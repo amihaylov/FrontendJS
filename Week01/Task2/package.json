@@ -1,0 +1,18 @@
+{
+  "name": "Task2",
+  "version": "1.0.0",
+  "description": "hack_bulgaria_Task2",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "task2"
+  ],
+  "author": "",
+  "license": "BSD-2-Clause",
+  "dependencies": {
+    "express": "^4.12.2"
+  },
+  "devDependencies": {}
+}

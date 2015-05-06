@@ -1,0 +1,32 @@
+.test {
+    text-align: center;
+    color: red;
+}  
+
+.sidebar {
+	text-align: center;
+	float:right;
+	width: 300px;
+	background-color: #AA00AA;
+}
+
+.upper-bar {
+	text-align: center;
+	position:fixed;
+	top:0px;
+	list-style-type: none;
+	list-style: none;
+    margin: 0 auto;
+    padding: 10px;
+}
+
+#nav {
+text-align:center;
+}
+#nav li {
+display:inline;
+}
+#nav a {
+text-decoration:none; 
+padding:0 30px; /* variable width */
+}

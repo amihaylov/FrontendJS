@@ -1,0 +1,9 @@
+ul.tasks-list {
+    margin-left: auto;
+    margin-right: auto;
+    width: 70%;
+    background-color: #ffff00;
+}
+li.task-item {
+    color: blue;
+}
