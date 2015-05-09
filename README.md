@@ -55,7 +55,8 @@ Here be description of the different weeks and tasks, later TODO...
 5. Week 5
   1. Task1
   ```
-    More sofisticated TODO list with the option to check the concrete item and some styling.
+    More sofisticated TODO list with the option 
+    to finish the concrete item and apply some styling.
   ```
   2. Task2
   ```
@@ -70,7 +71,8 @@ Here be description of the different weeks and tasks, later TODO...
 7. Week 7
   1. Task1
   ```
-    CRUD for students using nodejs for backend and AJAX requests for transmitting/fetching data.
+    CRUD for students using nodejs for backend 
+    and AJAX requests, based on REST for transmitting/fetching data.
   ```
 8. Week 8
   1. Task1
