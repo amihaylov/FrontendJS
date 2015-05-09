@@ -1,4 +1,4 @@
-"use strict"
+//"use strict"
 $(document).ready(function(){
 	var words =  ["banana","orange","apple","peach"];
 	var letters = [['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'],
@@ -6,6 +6,11 @@ $(document).ready(function(){
 	var MAX = 7;
 	var deathCount = 0;
 	var underscoreCount;
+	
+	//Function to replace character in a string at particular index
+	String.prototype.replaceAt=function(index, character) {
+    	return this.substr(0, index) + character + this.substr(index+character.length);
+	}
 
 	function getRandomInt(min, max) {
 		return Math.floor(Math.random() * (max - min)) + min;
@@ -13,14 +18,14 @@ $(document).ready(function(){
 
 	function matchLetter(letter, word, guess) {
 		var found = false;
-		for (i = 0; i < word.length; i++) 
+		for (var i = 0; i < word.length; i++) 
 			if (letter == word.charAt(i)) {
 				found = true;
-				guess.charAt(i) = letter;
+				guess = guess.replaceAt(i, letter);
 			}
 		if (!found) {
 			deathCount++;
-			for (j = 0; j < 26; j++) {
+			for (var j = 0; j < 26; j++) {
 				if (letter == letters[0][j])
 					letters[1][j] = 2;
 				else
@@ -29,13 +34,12 @@ $(document).ready(function(){
 		}
 		else {
 			underscoreCount--;
-			for (j = 0; j < 26; j++) {
+			for (var j = 0; j < 26; j++) {
 				if (letter == letters[0][j])
 					letters[1][j] = 1;
-				else
-					console.log("Something is wrong with your method");
 			}
 		}
+		return guess;
 	}
 
 	var wordNum = getRandomInt(0, words.length);
@@ -60,7 +64,7 @@ $(document).ready(function(){
 			alert("You have " +(MAX - deathCount)+" lives left!")
 
 		var exclusionString = "The word does not contain the following letters: ";
-		for (i = 0; i < 26; i++)
+		for (var i = 0; i < 26; i++)
 			if (letters[1][i]==2)
 				exclusionString += letters[0][i];
 		var exclusionElem = $("#exclusion");
@@ -68,7 +72,7 @@ $(document).ready(function(){
 
 		var letter = $("#letter-input").val();
 		var validInput = false;
-		for (i = 0; i < 26; i++) 
+		for (var i = 0; i < 26; i++) 
 			if (letter == letters[0][i])
 				if (letters[1][i]==0)
 					validInput = true;
@@ -76,9 +80,10 @@ $(document).ready(function(){
 			alert("Letter is already said!");
 		}
 
-		matchLetter(letter, words[wordNum], output);
+		output = matchLetter(letter, words[wordNum], output);
+		outputElem.val(output);
 		console.log(output);
-		
+
 		setTimeout(function timer() {
 			console.log('You clicked the button!');    
 		}, 2000);

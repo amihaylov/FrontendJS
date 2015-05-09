@@ -6,8 +6,8 @@ function Person(name) {
 Person.prototype.toString = function() {
   return "Hello, I am " + this.name;
 }
-// 1. Да открадна this
-// 2. Да открадна prototype
+// 1. First to "steal" this
+// 2. Then "steal" prototype
 function Student(name, fn) {
   Person.call(this, name);
   this.fn = fn;
