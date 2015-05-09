@@ -32,7 +32,10 @@ Here be description of the different weeks and tasks, later TODO...
     The properties of the students are their ids, names and mails.
     Using nodejs for running in console, prompt for input and JSON files for db.
   ```
-3. Week 3
+3. Week 3 
+  ```
+    Exercises over OOP and Prototypes.
+  ```
   1. Task1
   ```
     panda.js - using constructor function and prototypes to realize OOP structure.
