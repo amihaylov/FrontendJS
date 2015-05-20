@@ -1,0 +1,28 @@
+<html>
+  <head>
+    <title></title>
+    <meta content="">
+    <link href="styles.css" rel="stylesheet">
+  </head>
+  <body ng-app ng-controller="MainCtrl" ng-init="tasks=[]" ng-init="counter=0">
+  	<form ng-submit="addTask(counter,value);">
+  		<input type="text" value="Enter Name" ng-model="value"/>
+  		<button type="button" ng-click="addTask(counter,value);">Submit</Button>
+  	</form>
+  	<ul>
+  		<!--Cannot add the same element with repeat!! E.g. 1,2,3 is allowed; 1,2,1 is not-->
+  		<!-- In order to fix this we add track by directive -->
+  		<li ng-repeat="task in tasks track by $index" ng-class="{strike: deleted}">
+        <input type="checkbox" ng-model="deleted">
+        index:{{$index}} task:{{task.name}}
+        <button type="button" ng-click="editTask($index,value)">Edit</button>
+        <button type="button" ng-click="deleteTask($index)">Delete</button>
+      </li>
+  	</ul>
+  	<script src="lib/angular/angular.js"></script>
+    <script src="main.js"></script>
+  </body>
+</html>
+
+<!--   	<h1>{{name || "Angular"}}Hello Angular!</h1>
+  	<input type="text" value="Enter Name" ng-model="name"/>  -->

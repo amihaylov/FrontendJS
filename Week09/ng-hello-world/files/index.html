@@ -1,0 +1,22 @@
+<html>
+  <head>
+    <title></title>
+    <meta content="">
+    <style></style>
+  </head>
+  <body ng-app ng-init="tasks=[]">
+  	<form ng-submit="tasks.push(task); task='';">
+  		<input type="text" value="Enter Name" ng-model="task"/>
+  		<button type="button" ng-click="tasks.push(task); task='';">Submit</Button>
+  	</form>
+  	<ul>
+  		<!--Cannot add the same element with repeat!! E.g. 1,2,3 is allowed; 1,2,1 is not-->
+  		<!-- In order to fix this we add track by directive -->
+  		<li ng-repeat="task in tasks track by $index">index:{{$index}} task:{{task}}</li>
+  	</ul>
+  	<script src="bower_components/angular/angular.js"></script>
+  </body>
+</html>
+
+<!--   	<h1>{{name || "Angular"}}Hello Angular!</h1>
+  	<input type="text" value="Enter Name" ng-model="name"/>  -->
