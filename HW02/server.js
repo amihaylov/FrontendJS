@@ -9,8 +9,9 @@ var letters = [['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p',
 var MAX = 7;
 var deathCount = 0;
 var underscoreCount; 
+
 function getRandomInt(min, max) {
-return Math.floor(Math.random() * (max - min)) + min;
+	return Math.floor(Math.random() * (max - min)) + min;
 }
 
 //Not necessary anymore, see hangman()
@@ -49,21 +50,22 @@ function matchLetter(letter, word, guess) {
 function inputLetter(cb) {
 	var letter;
 	var validInput = false;
-		prompt.start();
-		prompt.get(['input'], function(err,result)  {
-			console.log('%s',result.input);
-			letter = result.input;
-			for (i = 0; i < 26; i++) 
-				if (letter == letters[0][i])
-					if (letters[1][i]==0)
-						validInput = true;
-			if (!validInput) {
-				console.log("Letter is already said!");
-				cb(false);
-			}
-			else
-				cb(letter);
-		});
+	
+	prompt.start();
+	prompt.get(['input'], function(err,result)  {
+		console.log('%s',result.input);
+		letter = result.input;
+		for (i = 0; i < 26; i++) 
+			if (letter == letters[0][i])
+				if (letters[1][i]==0)
+					validInput = true;
+		if (!validInput) {
+			console.log("Letter is already said!");
+			cb(false);
+		}
+		else
+			cb(letter);
+	});
 }
 //console.log(inputLetter());
 function hangman () {
