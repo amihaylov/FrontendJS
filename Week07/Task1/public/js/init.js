@@ -30,9 +30,7 @@ $( document ).ready(function(){
    $("button#delete-button").click(function(){
       //FIX student variable, should be object,
       //that takes the values of all three fields!
-      var student = {id: $("input#student-id").val(),
-                  name: $("input#student-name").val(),
-                  email: $("input#student-email").val() };        
+      var student = {id: $("input#student-id").val()};      
       StudentsApp.deleteStudent(student);
       StudentsApp.displayList();
    });
