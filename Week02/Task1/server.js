@@ -4,40 +4,53 @@ return Math.floor(Math.random() * (max - min)) + min;
 }
 var number = getRandomInt(1000, 9999);
  
+function occurrences(string, subString, allowOverlapping){
+
+    string+=""; subString+="";
+    if(subString.length<=0) return -1;
+
+    var n=0, pos=0;
+    var step=(allowOverlapping)?(1):(subString.length);
+
+    while(true){
+        pos=string.indexOf(subString,pos);
+        if(pos>=0){ n++; pos+=step; } else break;
+    }
+    return(n);
+}
+
 function cowsAndBulls(number, guessed) {
+	//Number of occurrences and the repeating chars (not to be double checked)
+	var guessCharOccurences = "";
 	var num = number.toString();
 	var guess = guessed.toString();
 	var cows = 0, bulls = 0;
-	//When we have repetition of digits i.e. 1123, 1112 or 1231, first row is the repeated digits, second is number of occurences
-	var offset = [[-1,-1,-1,-1],[0,0,0,0]];
-	for (i = 0; i < num.length-1; i++)
-		for (j = i+1; j < num.length; j++)
-			if (num.charAt(i) == num.charAt(j)) {
-				offset[0][i] = num.charAt(i);
-				offset[1][i]++;
+
+	//Checking how much cows and bulls there are
+	for(var i=0; i<guess.length; i++){
+		var numOcc = 0;
+		var guessOcc = occurrences(guess, guess.charAt(i));
+		if (guessCharOccurences.search(guess.charAt(i)) == -1){
+			if(num.search(guess.charAt(i))>-1){
+				numOcc = occurrences(num, guess.charAt(i));
+				if (numOcc>guessOcc)
+					cows+=guessOcc;
+				else
+					cows+=numOcc;
 			}
-	var notFound = 0;
-	for (i = 0; i < num.length; i++) {
-		for (j = 0; j<guess.length && notFound == 0; j++) {
-			if (num.charAt(i) == guess.charAt(j)) {
-				cows++;
-				if (i==j) {
-					cows--;
-					bulls++;
-					//Subtracting offset from cows, if needed
-				}
-				notFound = 1;	
-			}
-/*		for (k = 0; k < offset.length; k++) {
-			if (num.charAt(i) == offset[0][k]) {
-				cows-=offset[1][k];
-			}
-		}*/
+			guessCharOccurences+=guess.charAt(i);
 		}
-		notFound = 0;
 	}
-/*	if (cows > bulls)
-		cows-=bulls;*/
+	//Checking for bulls
+	for(var i=0; i<guess.length; i++)
+		if(guess.charAt(i)==num.charAt(i)){
+			bulls++;
+			break;
+		}
+	
+	//Distinguishing cows from bulls
+	cows-=bulls;
+
 	console.log('Cows are %s',cows,' Bulls are ',bulls)
 }
 
