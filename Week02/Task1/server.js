@@ -43,10 +43,8 @@ function cowsAndBulls(number, guessed) {
 	}
 	//Checking for bulls
 	for(var i=0; i<guess.length; i++)
-		if(guess.charAt(i)==num.charAt(i)){
+		if(guess.charAt(i)==num.charAt(i))
 			bulls++;
-			break;
-		}
 	
 	//Distinguishing cows from bulls
 	cows-=bulls;
@@ -54,21 +52,19 @@ function cowsAndBulls(number, guessed) {
 	console.log('Cows are %s',cows,' Bulls are ',bulls)
 }
 
-cowsAndBulls(1123, 1111)
 function checkIfEqual(number) {
 
 	
 
 	var prompt = require('prompt');
 	prompt.start();
-	prompt.get(['guess'], function(err,result) {
-
-	console.log('%s',result.guess)	
+	prompt.get(['guess'], function(err,result) {	
 	if (number == result.guess) {
-		console.log('Numbers are equal! %s%s', number,' ', result.guess)
+		console.log('Numbers are equal! %s%s', number,' ', result.guess);
+		return;
 	}
 	else {
-		console.log('Numbers are NOT equal! %s%s',number,' ', result.guess)
+		console.log('Numbers are NOT equal! %s', result.guess)
 		cowsAndBulls(number, result.guess)
 		checkIfEqual(number)
 	}
@@ -76,21 +72,3 @@ function checkIfEqual(number) {
 }
 
 checkIfEqual(number);
-
-/*var express = require('express')
-var app = express()
-	//Sending index.html to localhost, if the row is missing will send res.send('Hello World!')
-    app.use(express.static('public'));
-	app.get('/', function (req, res) {
-	res.send('Hello World!')
-})
-
-var server = app.listen(3000, function () {
-
-  var host = server.address().address
-  var port = server.address().port
-
-  console.log('Example app listening at http://%s:%s', host, port)
-
-})*/
-
