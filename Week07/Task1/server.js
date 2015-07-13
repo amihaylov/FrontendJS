@@ -33,6 +33,7 @@ app.get('/students', function(req, res){
 // post new user to the collection
 app.post('/students', function(req, res){
  // req.body contains the incoming fields and values
+	console.log(req.body);
 	var id = req.body.id;
 	var name = req.body.name;
 	var email = req.body.email;

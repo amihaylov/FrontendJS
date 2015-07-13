@@ -1,15 +1,18 @@
 //Users table
 
-var arrayUsers = [{id:"", name:"", email:""}];
+var arrayUsers = [];
 var prompt = require('prompt');
+var fs = require('fs');
 var jf = require('jsonfile');
+var db = [];
 
 function listTable() {
 	console.log("id\t | name\t | email\t")
 	console.log("-----------------------------------")
-	arrayUsers.forEach(function(x){
-		console.log(x.id + "\t |" + x.name + "\t |" + x.email);
-	});
+
+		arrayUsers.forEach(function(x){
+			console.log(x.id + "\t |" + x.name + "\t |" + x.email);
+		});
 }
 
 function addRecord() {
@@ -55,7 +58,7 @@ function getRecord() {
 				}
 		}
 		else
-			console.log("No suchget key in table!")
+			console.log("No such get key in table!")
 		if(!found)
 			console.log("No such value in key!")
 		promptQuit();
@@ -64,7 +67,6 @@ function getRecord() {
 
 function saveFile() {
 	//Overwriting any existing file
-	var jf = require('jsonfile')
  
 	var file = 'data.json'
  
@@ -143,25 +145,13 @@ function editRecord() {
 
 function openFile() {
 	// Might need jQuery to parse JSON file into objects.
-
-	var jf = require('jsonfile')
-	var util = require('util')
  
 	var file = 'data.json'
-	jf.readFile(file, function(err, obj) {
-	  //console.log(util.inspect(obj))
-	  var text = util.inspect(obj);
-	  arrayUsers = text.map(JSON.parse);
-	  //or arrayUsers = JSON.parse(text)
-	  console.log(text);
-	  promptQuit();
-	});
-/*	$.getJSON('data.json', function(data) { 
-    arrayUsers = data;
-    LOOKS LIKE JQUERY
-  }); */
-	var db = [];
-	db = readFileSync(file);
+	db = JSON.parse(fs.readFileSync(file, 'utf8'));
+	if (typeof db[0] !== 'undefined')
+	for (var i=0; i<db.length; i++)
+		arrayUsers.push(db[i]);
+	promptQuit();
 }
 
 function promptQuit() {
