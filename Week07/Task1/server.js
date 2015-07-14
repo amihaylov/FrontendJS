@@ -26,6 +26,12 @@ var students =[
 
 // collection endpoints
 // get all students
+
+app.post('/test', function(req, res){
+	console.log(req.body.message);
+	res.jsonp(students);
+});
+
 app.get('/students', function(req, res){
 	res.jsonp(students);
 });

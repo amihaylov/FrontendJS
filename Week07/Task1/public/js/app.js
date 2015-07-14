@@ -8,6 +8,7 @@ var StudentsApp = (function() {
       data: student
     });
   };*/
+  
 //The native AJAX call
   var addStudent = function(student) {
     var xhr = new XMLHttpRequest;
@@ -130,12 +131,45 @@ var StudentsApp = (function() {
     
   };
 
+  //Testing submitting and receiving data from frontend to backend
+  var test = function(message) {
+
+    var xhr = new XMLHttpRequest;
+    xhr.open("POST", "/test");
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState == 4 && xhr.status == 200) {
+            var data = JSON.parse(xhr.responseText);
+
+            var container = $("#students-database > tbody");
+            container.empty();
+
+            //Add the database
+            for (var i=0; i<data.length; i+=1){
+              //Add classes TODO!
+              var row = $("<tr></tr>");
+              var cellId = $("<td></td>").text(data[i].id + 'test');
+              var cellName = $("<td></td>").text(data[i].name);
+              var cellEmail = $("<td></td>").text(data[i].email);
+              row.append(cellId).append(cellName).append(cellEmail);
+              container.append(row);
+            }
+        }
+        else if(xhr.status != 200){
+          alert('Request failed.  Returned status of ' + xhr.status);
+          console.log('Ready state is '+xhr.readyState);
+        }
+    }
+    xhr.send(JSON.stringify(message));      
+  };
+
   // public api
   return {
     addStudent: addStudent,
     updateStudent: updateStudent,
     deleteStudent: deleteStudent,
-    displayList: displayList
+    displayList: displayList,
+    test: test
   };
 })();
  
