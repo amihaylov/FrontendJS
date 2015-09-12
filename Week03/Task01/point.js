@@ -31,7 +31,7 @@ function ImmutablePoint(x, y, z) {
 }
 
 ImmutablePoint.prototype.move = function(dx, dy, dz) {
-	return new ImmutablePoint(this.getX + dx, this.getY + dy, this.getZ + dz);
+	return new ImmutablePoint(this.getX() + dx, this.getY() + dy, this.getZ() + dz);
 }
 
 ImmutablePoint.prototype.toString = function() {
@@ -51,7 +51,6 @@ var result = p2.move(0, 0, -1);
 p2.getX() == 0; // true
 p2.getY() == 0; // true
 p2.getZ() == 0; // true
-
 
 result.getZ() == -1; // true
 
